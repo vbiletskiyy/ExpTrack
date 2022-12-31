@@ -16,6 +16,13 @@ services:
     volumes:
       - .:/usr/src/app
     command: rails s -b 0.0.0.0
+  js:
+    <<: *app
+    command: yarn build --watch
+
+  css:
+    <<: *app
+    command: yarn build:css --watch
 
 volumes:
   db:

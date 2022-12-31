@@ -1,0 +1,23 @@
+<div class="h-100 d-flex align-items-center justify-content-center" style="padding-top:10em;">
+  <div class= "text">
+    <div class="text-center">
+      <h1>Create an account</h1><br>
+      <p>Already have am account? <%= link_to "Sign In", login_users_path, :method => "get", :class => "text-decoration-none text-dark fw-bold"%></p><br>
+      <turbo-frame id="validation_messages"></turbo-frame>
+      <%= render 'shared/errors' %> 
+      <%= form_for :user, url: users_path, method: :post do |f| %>
+          <%= f.label :name, 'Full name:' %><br>
+          <%= f.text_field :name, class: 'form-control' %><br>
+          <%= f.label :email, 'Email:' %><br>
+          <%= f.email_field :email, class: 'form-control' %><br>
+          <%= f.label :password, 'Password:' %><br>
+          <%= f.password_field :password, class: 'form-control' %><br>
+          <%= f.label :password_confirmation, 'Password confirmation:' %><br>
+          <%= f.password_field :password_confirmation, class: 'form-control' %><br>
+          <div class="pt-3 mb-5">
+            <%= button_to "Sign up", {}, {:class => "submit-button btn btn-dark" } %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
