@@ -1,24 +1,23 @@
-# README
+## Installation
+Follow these easy steps to install and start the app:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Prerequisites
+The setups steps expect following tools installed on the system.
 
-Things you may want to cover:
+* Github
+* Docker
 
-* Ruby version
+### Check out the repository
+```git clone https://github.com/vbiletskiyy/ExpTrack.git```
 
-* System dependencies
+### Open cd
+```cd ExpTrack```
 
-* Configuration
+### Set up and start Rails app with Docker
+```docker-compose build```
 
-* Database creation
+```docker-compose up```
 
-* Database initialization
+And now you can visit the site with the URL http://localhost:3000
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Use Ctrl-C to stop
