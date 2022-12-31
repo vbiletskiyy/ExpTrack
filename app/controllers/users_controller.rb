@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def perform_login
     result = Auth::Operation::Login.(params: login_params)
+    session[:user_id] = result[:user].id if result.success?
     render_result(result: result, path: spendings_path)
   end
 

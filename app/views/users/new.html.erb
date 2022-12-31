@@ -2,7 +2,7 @@
   <div class= "text">
     <div class="text-center">
       <h1>Create an account</h1><br>
-      <p>Already have am account? <%= link_to "Sign In", login_users_path, :method => "get", :class => "text-decoration-none text-dark fw-bold"%></p><br>
+      <p>Already have an account? <%= link_to "Sign In", login_users_path, :method => "get", :class => "text-decoration-none text-dark fw-bold"%></p><br>
       <turbo-frame id="validation_messages"></turbo-frame>
       <%= render 'shared/errors' %> 
       <%= form_for :user, url: users_path, method: :post do |f| %>
