@@ -1,0 +1,17 @@
+<div class="h-100 d-flex align-items-center justify-content-center" style="padding-top:10em;">
+  <div class="text">
+    <div class="text-center">
+      <h1>Sign into your account</h1>
+      <p>Don`t have an account? <%= link_to "Sign Up", new_user_path, method: "get", class: "text-decoration-none text-dark fw-bold" %></p><br>
+      <turbo-frame id="validation_messages"></turbo-frame>
+      <%= render 'shared/errors' %>
+      <%= form_with url: login_users_path, method: :post do |f| %>
+        <%= f.label :email, 'Email'%><br>
+        <%= f.text_field :email, class: 'form-control' %><br>
+        <%= f.label :password, 'Password'%><br>
+        <%= f.password_field :password, class: 'form-control' %><br>
+        <%= f.submit 'Get started', class: "btn btn-dark" %><br>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<% if @errors.present? %>
+  <div class="alert alert-danger">
+    <button type="button" class="btn-close position-absolute top-0 end-0 m-1" data-bs-dismiss="alert" aria-label="Close"></button>
+    <% if @errors.kind_of? Hash %>
+    <ul>
+      <% @errors.each do |key, value| %>
+        <li class="flash-error"><%= key %> <%= value.join(', ') %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <li class="flash-error"> <%= @errors %> </li>
+    <% end %>
+  </div>
+<% end %>
