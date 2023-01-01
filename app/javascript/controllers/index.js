@@ -6,6 +6,10 @@ import { application } from "./application"
 
 import FlashController from './flash_controller'
 import HelloController from "./hello_controller"
+import RemoteModalController from "./remote_modal_controller"
+import FormController from "./form_controller"
 
 application.register("hello", HelloController)
 application.register("flash", FlashController)
+application.register("remote-modal", RemoteModalController)
+application.register("form", FormController)

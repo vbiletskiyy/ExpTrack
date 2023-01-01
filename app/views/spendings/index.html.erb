@@ -1,0 +1,23 @@
+<h1>Spendings</h1>  
+<%= link_to "New item", new_spending_path, class: "btn btn-primary", data: { turbo_frame: "remote_modal" }%>
+<div>
+  <%= form_with url: spendings_path, method: :get, data: { turbo_frame: "spendings", turbo_action: "advance", controller: "form", action: "input->form#submit" } do %>
+    <%= text_field_tag "filter", nil, placeholder: "Filter", class: ""%>
+  <% end %>
+</div>
+<div id="spendings">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%= turbo_frame_tag "spendings" do %>
+      <%= render @spendings %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
