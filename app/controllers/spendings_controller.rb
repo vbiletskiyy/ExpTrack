@@ -3,11 +3,8 @@ class SpendingsController < ApplicationController
   before_action :set_categories
 
   def index
-    filtered = Spendings::Operation::Index.(filter: params[:filter], current_user: current_user)
-    @pagy, @spendings = pagy(filtered[:filtered])
-  end
-
-  def show
+    @result = Spendings::Operation::Index.(filter: params[:filter], current_user: current_user)
+    @pagy, @spendings = pagy(@result[:filtered])
   end
 
   def new

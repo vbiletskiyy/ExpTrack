@@ -7,15 +7,19 @@ module Spendings::Operation
     step :filtered
 
     def set_user_spendings(ctx, filter:, current_user:, **)
-      ctx[:filtered] = current_user.spendings
-      return ctx[:filtered] if filter
+      if filter
+        ctx[:user_spendings] = Spending.none
+      else
+        ctx[:user_spendings] = current_user.spendings
+      end
     end
 
     def filter_by_category(ctx, filter:, current_user:, **)      p '!!!'
-      ctx[:filter_by_category] = Spending
-        .where(user_id: current_user.id)
-        .includes(:spending_category)
-        .where(spending_categories: {title: filter.capitalize})
+      ctx[:filter_by_category] = 
+        Spending
+          .where(user_id: current_user.id)
+          .includes(:spending_category)
+          .where(spending_categories: {title: filter&.capitalize})
     end
 
     def filter_by_amount(ctx, filter:, current_user:, **)
@@ -26,12 +30,12 @@ module Spendings::Operation
       ctx[:filter_by_description] = Spending.where(user_id: current_user.id).where("LOWER(description) ILIKE ?", "%#{filter}%")
     end
 
-    def filtered(ctx, filtered:, filter_by_amount:, filter_by_category:, filter_by_description:, **)
+    def filtered(ctx, user_spendings:, filter_by_amount:, filter_by_category:, filter_by_description:, **)
       ctx[:filtered] = 
         filter_by_amount.presence ||
         filter_by_category.presence ||
         filter_by_description.presence ||
-        filtered
+        user_spendings
     end
   end
 end
