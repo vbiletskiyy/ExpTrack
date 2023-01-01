@@ -3,7 +3,8 @@ class SpendingsController < ApplicationController
   before_action :set_categories
 
   def index
-    @spendings = current_user.spendings.where(amount: params[:filter]).all
+    filtered = Spendings::Operation::Index.(filter: params[:filter], current_user: current_user)
+    @pagy, @spendings = pagy(filtered[:filtered])
   end
 
   def show
@@ -17,8 +18,6 @@ class SpendingsController < ApplicationController
   end
 
   def create
-    p params
-    p '!!!'
   @spending = Spending.new(spending_params)
     if @spending.save
       redirect_to spendings_url, notice: "Spending was successfully created."
@@ -51,6 +50,6 @@ class SpendingsController < ApplicationController
   end
 
   def spending_params
-    params.require(:spending).permit(:description, :amount, :spending_category_id).merge!( user_id: current_user.id)
+    params.require(:spending).permit(:description, :amount, :spending_category_id).merge!(user_id: current_user.id)
   end
 end
