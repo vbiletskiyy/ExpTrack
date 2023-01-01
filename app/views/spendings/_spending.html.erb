@@ -1,0 +1,17 @@
+<% @spendings.each do |spending| %>
+  <tr scope="row">
+    <td style="width: 25%">
+      <%= spending.description %>
+    </td>
+    <td style="width: 25%">
+      <%= spending.amount %>
+    </td>
+    <td style="width: 25%">
+      <%= spending.spending_category.title %>
+    </td>
+    <td style="width: 25%">
+      <%= link_to "Delete", spending, class: "btn btn-danger", method: :delete, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+      <%= link_to "Edit", edit_spending_path(spending), class: "btn btn-success btn-block", data: { turbo_frame: "remote_modal" } %>
+    </td>
+  </tr>
+<% end %>
