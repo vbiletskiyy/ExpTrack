@@ -1,4 +1,5 @@
 class SpendingsController < ApplicationController
+  before_action :user_authenticated?
   before_action :set_spending, only: %i[ show edit update destroy ]
   before_action :set_categories
 
