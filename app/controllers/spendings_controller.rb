@@ -27,7 +27,7 @@ class SpendingsController < ApplicationController
   end
 
   def destroy
-    result = Spendings::Operation::Delete.(params: {id: params[:id]})
+    result = Spendings::Operation::Delete.(params: {id: params[:id]}, current_user: current_user)
     render_result(result: result, path: spendings_url, notice: "Spending has been successfully destroyed")
   end
 
@@ -37,7 +37,7 @@ class SpendingsController < ApplicationController
   end
 
   def users_list
-    @user_ids = UserSpending.where(user_id: current_user.id, sent: true).pluck(:sent_by)
+    @user_ids = UserSpending.where(user_id: current_user.id, sent: true).pluck(:sent_by).uniq
   end
 
   def user_spendings
