@@ -1,0 +1,4 @@
+<h3> Expenses sent to me </h3>
+<% @user_ids.each do |id| %>
+  <%= link_to "#{User.find_by(id: id).name}`s spendings" , user_spendings_path(id), class: "text-decoration-none link-dark" %>
+<% end %>

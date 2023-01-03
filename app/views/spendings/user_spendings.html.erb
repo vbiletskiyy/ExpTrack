@@ -1,0 +1,34 @@
+<div id="spendings" class="pt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @spendings.each do |spending| %>
+        <tr scope="row">
+          <td style="width: 25%">
+            <%= spending.description %>
+          </td>
+          <td style="width: 25%">
+            <%= spending.amount %> uah
+          </td>
+          <td style="width: 25%">
+            <%= spending.spending_category.title %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row justify-content-start">
+    <div class="col-9">
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+    <div class="col-3">
+      Total amount of spendings: <div class="fw-bold"><%= @result[:spendings].presence&.pluck(:amount)&.sum %> uah</div>
+    </div>
+  </div>
+</div>

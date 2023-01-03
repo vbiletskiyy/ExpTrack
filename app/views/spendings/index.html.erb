@@ -1,4 +1,8 @@
-<h1>Spendings</h1>  
+<div class="row justify-content-start">
+  <div class="col-3">
+    <h1>Spendings</h1>
+  </div>
+</div>
 <div class="row pt-5 justify-content-start">
   <div class="col-9">
     <%= form_with url: spendings_path, method: :get, data: { turbo_frame: "spendings", turbo_action: "advance", controller: "form", action: "input->form#submit" } do %>
@@ -41,10 +45,23 @@
     </tbody>
   </table>
   <div class="row justify-content-start">
-  <div class="col-9">
-    <%== pagy_bootstrap_nav(@pagy) %>
-  </div>
-  <div class="col-3">
-    Total amount of spendings: <div class="fw-bold"><%= @result[:filtered].pluck(:amount).sum %> uah</div>
+    <div class="col-9">
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+    <div class="col-3">
+      Total amount of spendings: <div class="fw-bold"><%= @result[:filtered].presence&.pluck(:amount)&.sum %> uah</div>
+    </div>
   </div>
 </div>
+
+<h2 class="pt-5">Share my spendings to</h1>
+<%= form_with(url: "send_spendings", method: :get, local: true) do |f| %>
+  <div class="mb-3">
+    <%= f.select(:user_ids, @users.collect {|p| [ p.name, p.id ] }, 
+                                           {},
+                                           { multiple: true, include_blank: false, class: "form-select"}) %>
+  </div>
+  <div class="mb-3">
+    <%= f.submit "Send", class: "btn btn-success" %>
+  </div>
+<% end %>
