@@ -1,7 +1,7 @@
 # Expenses tracking app
 
 ## DB Schema
-![db](./app/assets/images/dbdiagram.jpg)
+![db](./app/assets/images/db.jpg)
 
 ## Installation
 Follow these easy steps to install and start the app:
