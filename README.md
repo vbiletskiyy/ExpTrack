@@ -1,5 +1,6 @@
 # Expenses tracking app
 
+Visit website: https://quiet-woodland-15477.herokuapp.com/
 ## DB Schema
 ![db](./app/assets/images/db.jpg)
 
@@ -30,10 +31,12 @@ Install the gems required by the application:
 
 ```bundle install```
 
-## Create and setup the database
+## Create, setup and seeding the database
 ```rails db:create```
 
 ```rails db:migrate```
+
+```rails db:seed```
 
 ## Start the Rails server
 Switch to another terminal. You can start the rails server using the command given below.
@@ -43,3 +46,6 @@ Switch to another terminal. You can start the rails server using the command giv
 And now you can visit the site with the URL http://localhost:3000
 
 Use Ctrl-C to stop
+
+## Test
+Run ```rspec``` in the terminal
