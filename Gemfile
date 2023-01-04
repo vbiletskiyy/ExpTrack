@@ -79,6 +79,7 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  gem 'database_cleaner-active_record'
   gem "factory_bot_rails"
   gem 'faker'
   gem "capybara"

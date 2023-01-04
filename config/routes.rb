@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :spendings
+  get 'send_spendings', to: 'spendings#send_spendings'
+  get 'users_list', to: 'spendings#users_list'
+  get 'user_spendings/:user_id', to: 'spendings#user_spendings', as: 'user_spendings'
 end

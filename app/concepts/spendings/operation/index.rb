@@ -7,35 +7,31 @@ module Spendings::Operation
     step :filtered
 
     def set_user_spendings(ctx, filter:, current_user:, **)
-      if filter
-        ctx[:user_spendings] = Spending.none
-      else
-        ctx[:user_spendings] = current_user.spendings
-      end
+      ctx[:user_spendings] = Spending.includes(:user_spendings).where(user_spendings: {user_id: current_user.id, sent_by: nil})
+
+      return ctx[:user_spendings] if filter
     end
 
-    def filter_by_category(ctx, filter:, current_user:, **)      p '!!!'
+    def filter_by_category(ctx, filter:, user_spendings:, **)
       ctx[:filter_by_category] = 
-        Spending
-          .where(user_id: current_user.id)
+      user_spendings
           .includes(:spending_category)
           .where(spending_categories: {title: filter&.capitalize})
     end
 
-    def filter_by_amount(ctx, filter:, current_user:, **)
-      ctx[:filter_by_amount] = Spending.where(user_id: current_user.id, amount: filter)
+    def filter_by_amount(ctx, filter:, user_spendings:, **)
+      ctx[:filter_by_amount] = user_spendings.where(amount: filter)
     end
 
-    def filter_by_description(ctx, filter:, current_user:, **)
-      ctx[:filter_by_description] = Spending.where(user_id: current_user.id).where("LOWER(description) ILIKE ?", "%#{filter}%")
+    def filter_by_description(ctx, filter:, user_spendings:, **)
+      ctx[:filter_by_description] = user_spendings.where("LOWER(description) ILIKE ?", "%#{filter}%")
     end
 
     def filtered(ctx, user_spendings:, filter_by_amount:, filter_by_category:, filter_by_description:, **)
-      ctx[:filtered] = 
+      ctx[:user_spendings] = 
         filter_by_amount.presence ||
         filter_by_category.presence ||
-        filter_by_description.presence ||
-        user_spendings
+        filter_by_description
     end
   end
 end

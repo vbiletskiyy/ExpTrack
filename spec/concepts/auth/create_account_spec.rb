@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe Auth::Operation::CreateAccount do
   subject(:operation) { described_class }
 
-  let(:organization) { FactoryBot.create(:organization) }
-  let(:user) { FactoryBot.create(:user) }
   let(:params) {
     {
       email: Faker::Internet.email,
