@@ -14,7 +14,7 @@ module Spendings::Operation
 
     def filter_by_category(ctx, filter:, user_spendings:, **)
       ctx[:filter_by_category] = 
-        filtered
+      user_spendings
           .includes(:spending_category)
           .where(spending_categories: {title: filter&.capitalize})
     end

@@ -11,8 +11,8 @@ RSpec.describe Spendings::Operation::SendSpending do
     it 'send spendings to user' do
       current_user.spendings << spending
       op = operation.call(current_user: current_user, user_ids: [user.id])
-      expect(op).to be_success
       expect(UserSpending.exists?(sent_by: current_user.id, user_id: user.id, sent: true)).to be true
+      expect(op).to be_success
     end
   end
 end

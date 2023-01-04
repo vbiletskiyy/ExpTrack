@@ -25,16 +25,19 @@ RSpec.describe Spendings::Operation::Update do
     it 'invalid amount' do
       op = operation.call(params: params.merge(amount: 'a', id: spending.id))
       expect(op[:'contract.default'].errors.messages).to eq({amount: ['must be an integer']})
+      expect(op).to be_failure
     end
     
     it 'invalid description' do
       op = operation.call(params: params.merge(description: nil, id: spending.id))
       expect(op[:'contract.default'].errors.messages).to eq({description: ['must be filled']})
+      expect(op).to be_failure
     end
 
     it 'invalid spending category id' do
       op = operation.call(params: params.merge(spending_category_id: nil, id: spending.id))
       expect(op[:'contract.default'].errors.messages).to eq({spending_category_id: ['must be filled']})
+      expect(op).to be_failure
     end
   end
 end

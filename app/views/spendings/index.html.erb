@@ -57,7 +57,7 @@
 <h2 class="pt-2">Share my spendings to</h1>
 <%= form_with(url: "send_spendings", method: :get, local: true) do |f| %>
   <div class="mb-3">
-    <%= f.select(:user_ids, @users.collect {|p| [ p.name, p.id ] }, 
+    <%= f.select(:user_ids, @users.collect {|u| [ u.name, u.id ] }, 
                                            {},
                                            { multiple: true, include_blank: false, class: "form-select"}) %>
   </div>

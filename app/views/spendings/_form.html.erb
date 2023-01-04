@@ -5,23 +5,10 @@
   <div class="mb-3">
     <%= form.label :amount, style: "display: block", class: "form-label" %>
     <%= form.text_field :amount, class: "form-control" %>
-    <div style="color: red">
-    </div>
-  </div>
-
-  <div class="mb-3">
     <%= form.label :description, style: "display: block", class: "form-label" %>
     <%= form.text_area :description, class: "form-control" %>
-    <div style="color: red">
-    </div>
-  </div>
-
-  <div class="mb-3">
     <%= form.label :spending_category_id, style: "display: block", class: "form-label" %>
     <%= form.select(:spending_category_id, options_for_select(categories.map { |c| [c.title, c.id] }), {}, { class: "form-select" }) %>
-  </div>
-
-  <div class="mb-3">
     <%= form.submit "Save", class: "btn btn-success btn-block" %>
   </div>
 <% end %>
